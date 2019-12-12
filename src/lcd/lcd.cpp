@@ -1,43 +1,32 @@
+/*
+ * AmazinglyAdvanced is a WIP GBA emulator.
+ * Copyright (C) 2019  Lady Starbreeze (Michelle-Marie Schiller)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see http://www.gnu.org/licenses/.
+ */
+
 #include "lcd.h"
 #include "lcd_registers.h"
 
 #include "../gba.h"
 #include "../mmu/mmu.h"
 
-#define BG_I 3
-
 const uint32_t SET_SIZE = 0x4000;
 const uint32_t MAP_SIZE = 0x800;
 
 const uint8_t map_width[]  = { 32, 64, 32, 64 };
 const uint8_t map_height[] = { 32, 32, 64, 64 };
-
-const uint8_t obj_size[4][4][2] = {
-        {
-                { 8 , 8  },
-                { 16, 16 },
-                { 32, 32 },
-                { 64, 64 }
-        },
-        {
-                { 16, 8  },
-                { 32, 8  },
-                { 32, 16 },
-                { 64, 32 }
-        },
-        {
-                { 8 , 16 },
-                { 8 , 32 },
-                { 16, 32 },
-                { 32, 64 }
-        },
-        {
-                { 0, 0 },
-                { 0, 0 },
-                { 0, 0 },
-                { 0, 0 }
-        }
-};
 
 constexpr uint32_t get_map_offset(const uint32_t x, const uint32_t y)
 {

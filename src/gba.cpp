@@ -1,3 +1,21 @@
+/*
+ * AmazinglyAdvanced is a WIP GBA emulator.
+ * Copyright (C) 2019  Lady Starbreeze (Michelle-Marie Schiller)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see http://www.gnu.org/licenses/.
+ */
+
 #include "gba.h"
 
 #include "cpu/cpu.h"
@@ -18,6 +36,7 @@ renderer(nullptr), window(nullptr), texture(nullptr), event(), is_running(true)
 GBA::~GBA()
 = default;
 
+// error code checks are overrated
 void GBA::init_sdl()
 {
     SDL_Init(SDL_INIT_VIDEO);
@@ -25,7 +44,7 @@ void GBA::init_sdl()
     SDL_CreateWindowAndRenderer(480, 320, 0, &window, &renderer);
     SDL_SetWindowSize(window, 480, 320); // 480, 320
     SDL_RenderSetLogicalSize(renderer, 480, 320);
-    SDL_SetWindowResizable(window, SDL_FALSE);
+    SDL_SetWindowResizable(window, SDL_TRUE);
     SDL_SetWindowTitle(window, "AmazinglyAdvanced v0.1.0");
 
     texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGB555, SDL_TEXTUREACCESS_STREAMING, 240, 160);
@@ -40,11 +59,11 @@ uint16_t GBA::get_input()
 
     if (event.type == SDL_KEYDOWN)
     {
-        if (keyboard_state[SDL_GetScancodeFromKey(SDLK_x)])
+        if (keyboard_state[SDL_GetScancodeFromKey(SDLK_v)])
         {
             input |= 1u;
         }
-        if (keyboard_state[SDL_GetScancodeFromKey(SDLK_y)])
+        if (keyboard_state[SDL_GetScancodeFromKey(SDLK_c)])
         {
             input |= 2u;
         }
@@ -72,11 +91,11 @@ uint16_t GBA::get_input()
         {
             input |= 0x80u;
         }
-        if (keyboard_state[SDL_GetScancodeFromKey(SDLK_s)])
+        if (keyboard_state[SDL_GetScancodeFromKey(SDLK_f)])
         {
             input |= 0x100u;
         }
-        if (keyboard_state[SDL_GetScancodeFromKey(SDLK_a)])
+        if (keyboard_state[SDL_GetScancodeFromKey(SDLK_d)])
         {
             input |= 0x200u;
         }
