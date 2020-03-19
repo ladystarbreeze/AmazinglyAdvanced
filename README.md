@@ -36,7 +36,7 @@ Timers are fully-functional.
 
 # How to run games with AmazinglyAdvanced
 
-To run games with AmazinglyAdvanced, pass paths to a BIOS and game ROM image as command-line arguments.
+To run games with AmazinglyAdvanced, please pass paths to a BIOS and game ROM image as command-line arguments.
 
 # Keyboard controls
 * **A** -> **V key**
